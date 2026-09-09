@@ -26,11 +26,14 @@ CodeGraph（代码图谱）用于理解代码之间的关系，不只是按文�
 常用命令：
 
 ```powershell
+cd <项目根目录>
 codegraph init       # 当前项目首次建立索引
 codegraph status     # 查看索引状态
 codegraph explore "问题或符号"  # 查询调用关系和相关源码
 codegraph affected   # 根据改动文件查找受影响测试
 ```
+
+除 `init` 等明确接受路径的命令外，查询类命令默认读取当前工作目录；不要把项目路径误当成查询文本参数。
 
 没有 `.codegraph/` 时不要假设图谱存在；可以继续使用项目原生搜索。建立索引会在项目内生成工具数据，不应把它当成源码或交付文件。
 
