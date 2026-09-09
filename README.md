@@ -9,6 +9,7 @@
 - `SKILL.md`：skill 入口和使用规则；
 - `references/personal-rules.md`：沟通、编码、修改和输出要求；
 - `references/engineering-patterns.md`：跨项目工程规律；
+- `references/ai-coding-workflow.md`：CodeGraph、Ponytail 和 Karpathy Guidelines 的统一协作流程；
 - `references/windows-pitfalls.md`：Windows 通用问题；
 - `scripts/`：新增复盘和安装、同步辅助脚本。
 

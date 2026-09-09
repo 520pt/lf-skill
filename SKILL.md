@@ -23,6 +23,7 @@ description: 王路飞的个人工作规则与长期踩坑记忆。用于软件�
 - 先读取 `references/personal-rules.md`。
 - 涉及 Windows、中文、PowerShell、路径、构建或进程时，再读取 `references/windows-pitfalls.md`。
 - 涉及跨项目工程判断、状态、缓存、验证、UI、部署或并行任务时，再读取 `references/engineering-patterns.md`。
+- 涉及代码定位、影响范围、极简实现、精准修改或完整验证流程时，读取 `references/ai-coding-workflow.md`。
 - 涉及 Android/TV、图片/OCR、水印、排班/通知或文档导出时，读取该任务相关章节。
 - 同时检查项目根目录的 `AGENTS.md`、`MEMORY.md`、README、配置和启动文件；项目规则优先。
 
