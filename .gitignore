@@ -1,0 +1,21 @@
+# Private local history and machine-specific data
+references/lesson-log.md
+references/*.private.md
+references/*.local.md
+
+# Temporary and generated files
+tmp/
+temp/
+backups/
+backups_state/
+__pycache__/
+*.pyc
+*.log
+*.tmp
+
+# Local editor and OS files
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+Desktop.ini

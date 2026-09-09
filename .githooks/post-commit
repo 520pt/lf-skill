@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+remote="$(git config --get remote.origin.url || true)"
+if [ -z "$remote" ]; then
+  echo "未配置 origin，跳过自动推送。" >&2
+  exit 0
+fi
+
+git push origin HEAD

@@ -1,0 +1,4 @@
+interface:
+  display_name: "路飞踩坑复盘"
+  short_description: "记录并复用王路飞项目里的长期踩坑经验和工作偏好"
+  default_prompt: "Use $lufei-lessons to solve this task with Wang Lufei's personal rules and update lessons after any new pitfall is resolved."
