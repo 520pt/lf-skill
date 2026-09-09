@@ -12,6 +12,16 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
     throw "未找到 Git。请先安装 Git for Windows，再重新运行此脚本。"
 }
 
+function Assert-GitSucceeded {
+    param(
+        [string]$Action
+    )
+
+    if ($LASTEXITCODE -ne 0) {
+        throw "Git 操作失败：$Action。退出码：$LASTEXITCODE"
+    }
+}
+
 if ([string]::IsNullOrWhiteSpace($CodexHome)) {
     if (-not [string]::IsNullOrWhiteSpace($env:CODEX_HOME)) {
         $CodexHome = $env:CODEX_HOME
@@ -32,17 +42,26 @@ if (Test-Path -LiteralPath $target) {
             throw "目标目录已经是其他 Git 仓库：$target。为避免覆盖，脚本已停止。"
         }
         git -C $target pull --ff-only
+        Assert-GitSucceeded "更新已有 skill"
     } elseif ($Force) {
+        $resolvedTarget = [System.IO.Path]::GetFullPath($target).TrimEnd("\")
+        $expectedTarget = [System.IO.Path]::GetFullPath((Join-Path $skillsDir "lufei-lessons")).TrimEnd("\")
+        if ($resolvedTarget -ne $expectedTarget) {
+            throw "强制安装目标路径校验失败：$resolvedTarget"
+        }
         Remove-Item -LiteralPath $target -Recurse -Force
         git clone $RepoUrl $target
+        Assert-GitSucceeded "重新克隆 skill"
     } else {
         throw "目标目录已存在但不是目标 Git 仓库：$target。需要清理后再安装，或使用 -Force。"
     }
 } else {
     git clone $RepoUrl $target
+    Assert-GitSucceeded "克隆 skill"
 }
 
 git -C $target config core.hooksPath .githooks
+Assert-GitSucceeded "配置 Git 提交钩子"
 
 $privateLog = Join-Path $target "references\lesson-log.md"
 if (-not (Test-Path -LiteralPath $privateLog)) {
