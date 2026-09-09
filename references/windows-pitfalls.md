@@ -46,6 +46,7 @@
 - 提交前检查 `git diff --stat` 和实际 diff，确认没有编码、换行符、格式化造成的大面积改动。
 - 中文文件名或 Git 输出乱码时，检查 Git 编码配置，例如 `core.quotepath`。
 - Windows 下通过 HTTPS 推送 GitHub 时，如果命令长时间没有输出，先检查 `gh auth status`；可使用禁止交互登录、强制 HTTP/1.1 和低速超时的方式重试。必须保留本地提交，并用远端引用确认推送结果，不能只根据命令没有报错就判断已同步。
+- 自动同步脚本在全新克隆目录中可能没有 Git 提交者身份；安装脚本应只为该 skill 仓库配置本地 `user.name` 和 `user.email`，不要擅自修改全局 Git 配置。
 
 ## Docker Desktop / WSL
 

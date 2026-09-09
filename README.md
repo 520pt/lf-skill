@@ -28,7 +28,13 @@ irm https://raw.githubusercontent.com/520pt/lf-skill/main/scripts/install.ps1 | 
 %USERPROFILE%\.codex\skills\lufei-lessons
 ```
 
-如果系统没有 Git，脚本会提示先安装。已有同一仓库时，脚本会执行快进更新；如果目标目录不是 Git 仓库，不会强行覆盖。
+如果系统没有 Git，脚本会提示先安装。已有同一仓库时，脚本会执行快进更新；如果目标目录不是 Git 仓库，不会强行覆盖。脚本还会在该仓库的本地 Git 配置中写入默认提交者 `520pt <520pt@users.noreply.github.com>`，不会修改全局 Git 配置。
+
+如果需要改提交者，可以在安装时传入参数：
+
+```powershell
+& "$HOME\.codex\skills\lufei-lessons\scripts\install.ps1" -GitUserName "你的名称" -GitUserEmail "你的邮箱"
+```
 
 ## 手动安装
 

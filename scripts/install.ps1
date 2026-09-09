@@ -2,6 +2,8 @@
 param(
     [string]$RepoUrl = "https://github.com/520pt/lf-skill.git",
     [string]$CodexHome = "",
+    [string]$GitUserName = "520pt",
+    [string]$GitUserEmail = "520pt@users.noreply.github.com",
     [switch]$Force
 )
 
@@ -10,6 +12,10 @@ Set-StrictMode -Version Latest
 
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
     throw "未找到 Git。请先安装 Git for Windows，再重新运行此脚本。"
+}
+
+if ([string]::IsNullOrWhiteSpace($GitUserName) -or [string]::IsNullOrWhiteSpace($GitUserEmail)) {
+    throw "Git 提交者名称和邮箱不能为空。"
 }
 
 function Assert-GitSucceeded {
@@ -62,6 +68,10 @@ if (Test-Path -LiteralPath $target) {
 
 git -C $target config core.hooksPath .githooks
 Assert-GitSucceeded "配置 Git 提交钩子"
+git -C $target config user.name $GitUserName
+Assert-GitSucceeded "配置 Git 提交者名称"
+git -C $target config user.email $GitUserEmail
+Assert-GitSucceeded "配置 Git 提交者邮箱"
 
 $privateLog = Join-Path $target "references\lesson-log.md"
 if (-not (Test-Path -LiteralPath $privateLog)) {
