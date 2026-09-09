@@ -13,6 +13,8 @@
 - `references/windows-pitfalls.md`：Windows 通用问题；
 - `scripts/`：新增复盘和安装、同步辅助脚本。
 
+CodeGraph 采用本地命令行工具和 Codex MCP 接入，不作为普通 `SKILL.md` 安装；Ponytail 和 Karpathy Guidelines 作为独立 skill 安装，同时由本 skill 统一规定三者的协作顺序。
+
 本机的 `references/lesson-log.md` 是私有复盘记录，可能包含本地路径、项目名称、接口和其他隐私信息，因此默认不上传 GitHub。
 
 规则中的授权继承仅适用于同一操作链，不会自动扩大到新的账号、网站、数据、权限或高风险动作。
