@@ -15,6 +15,12 @@ if (-not (Test-Path -LiteralPath (Join-Path $Repository ".git"))) {
     throw "不是 Git 仓库：$Repository"
 }
 
+$gitUserName = git -C $Repository config --get user.name
+$gitUserEmail = git -C $Repository config --get user.email
+if ([string]::IsNullOrWhiteSpace($gitUserName) -or [string]::IsNullOrWhiteSpace($gitUserEmail)) {
+    throw "当前仓库没有 Git 提交者身份。请先运行 scripts/setup-git-hooks.ps1，或在本仓库配置 user.name 和 user.email。"
+}
+
 $status = @(git -C $Repository status --short)
 if ($status.Count -eq 0) {
     Write-Output "没有需要同步的公开文件。"
