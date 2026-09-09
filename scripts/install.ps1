@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$RepoUrl = "https://github.com/520pt/lf-skill.git",
     [string]$CodexHome = "",

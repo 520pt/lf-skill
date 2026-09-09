@@ -29,6 +29,7 @@
 - 不要递归删除不确定路径。
 - bat 启动失败时，检查工作目录、相对路径、环境变量、权限、编码、依赖是否在 PATH。
 - ps1 无法运行时，考虑 ExecutionPolicy；不要随便全局放宽安全策略，优先用当前进程级别并说明影响。
+- 面向 Windows PowerShell 5.1 的中文 `.ps1` 脚本应保存为 UTF-8 BOM，避免旧版 PowerShell 按系统 ANSI 编码读取中文后出现解析错误；面向 PowerShell 7 的脚本也要在说明里写清运行版本。
 - PowerShell 里超长 here-string / 大文本写文件可能触发 206 或引号解析问题；长内容优先落临时文件、`Set-Content -Encoding utf8` 或 Python 读写，不要把整段正文硬塞进一条命令。
 
 ## 环境变量和 PATH
@@ -44,6 +45,7 @@
 - 不要格式化无关文件。
 - 提交前检查 `git diff --stat` 和实际 diff，确认没有编码、换行符、格式化造成的大面积改动。
 - 中文文件名或 Git 输出乱码时，检查 Git 编码配置，例如 `core.quotepath`。
+- Windows 下通过 HTTPS 推送 GitHub 时，如果命令长时间没有输出，先检查 `gh auth status`；可使用禁止交互登录、强制 HTTP/1.1 和低速超时的方式重试。必须保留本地提交，并用远端引用确认推送结果，不能只根据命令没有报错就判断已同步。
 
 ## Docker Desktop / WSL
 
